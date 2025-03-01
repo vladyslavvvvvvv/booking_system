@@ -1,0 +1,7 @@
+<h3>Список кімнат y квартирі</h3>
+<ul>
+    {%for room in rooms_list %}
+        <li><a href =  "{%url 'room_list'%}">Room №{{room.number}}</a></li>
+    {% endfor %}
+
+</ul>

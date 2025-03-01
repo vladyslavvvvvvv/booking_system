@@ -1,0 +1,7 @@
+<h3>Список жителів y квартирі</h3>
+<ul>
+    {%for customer in customers_list %}
+        <li><a href = "{%url 'customers_list'%}">{{customer.name}}</a></li>
+    {% endfor %}
+
+</ul>
