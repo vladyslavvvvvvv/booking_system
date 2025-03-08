@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Список квартир</h3>
+<ul>
+    {%for apartment in apartments_list %}
+        <li><a href =  "{%url 'apartment_list'%}">{{apartment_list}}</a></li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
