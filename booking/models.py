@@ -1,5 +1,6 @@
 from django.db import models
 
+
 #
 class Apartment(models.Model):
     price = models.IntegerField()
