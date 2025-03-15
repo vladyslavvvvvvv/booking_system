@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as dg_login
 from django.contrib import messages
 
 def register(request):
@@ -8,8 +9,8 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return redirect("index")
+            dg_login(request, user)
+            return redirect("apartment-list")
         else: 
             messages.error(request, message="Error, try again later")
     else:
@@ -22,15 +23,15 @@ def register(request):
         )
 
 def login(request):
-    if request.method == "GET":
-        form = AuthenticationForm(request, data=request.GET)
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
             user = authenticate(request, username=username, password=password)
             if user is not None: 
-                login(request,user)
-                return redirect("index")
+                dg_login(request,user)
+                return redirect("apartment-list")
             else: 
                 messages.error(request, message= "Mistake when trying to log in")
     else: 
